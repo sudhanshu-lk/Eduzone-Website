@@ -1,0 +1,78 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'nav.css' %}">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<body class="body">  
+{% include 'navbar.html' %}
+    {% block content %}
+
+<section class="hero-section">
+    <div class="container1">
+        <div class="hero-content">
+            <h2>Unlock Your Potential. Learn Something New Today!</h2>
+            <p>Explore a world of knowledge and skills with our expertly crafted courses.</p>
+        <div class="button-container-flex">
+        <h4>Ready to start learning?</h4>
+        <a href="{% url 'course' %}" class="button">Explore Courses</a>
+        </div>
+        </div>
+    </div>
+</section>
+
+<section class="popular-courses">
+    <div class="container2">
+        <h1>Popular Courses</h1>
+
+        <!-- IMPORTANT GRID WRAPPER -->
+        <div class="course-grid">
+            {% for course in course %}
+            <div class="course-card">
+                <img src="{% static course.image %}" alt="{{ course.title }}">
+                <h2>{{ course.title }}</h2>
+                <p>Rating: {{ course.rating }}/5</p>
+                {% if course.linked_page %}
+                    <a href="{{ course.linked_page.get_absolute_url }}" class="btn">Learn More</a>
+                {% else %}
+                    <a href="#" class="btn">Coming Soon</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+
+
+<section class="how-it-works">
+    <div class="container3">
+        <h3>How It Works</h3>
+        <div class="step-grid">
+            <div class="step">
+                <img src="{% static '1756003624852.jpg' %}" alt="Explore Icon">
+                <h4>Explore Courses</h4>
+                <p>Find the perfect course from our extensive catalog.</p>
+            </div>
+            <div class="step">
+                <img src="{% static '1756003650795.jpg' %}" alt="Learn Icon">
+                <h4>Learn at your own pace</h4>
+                <p>Access lessons anytime, anywhere, on any device.</p>
+            </div>
+            <div class="step">
+                <img src="{% static '1756003682014.jpg' %}" alt="Achieve Icon">
+                <h4>Achieve Goals</h4>
+                <p>Gain certificates and skills to advance your carrer.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% include "footer.html" %}
+</body>
+<script src="/static/script.js"></script>
+</html>

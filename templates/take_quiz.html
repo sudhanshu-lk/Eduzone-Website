@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests</title>
+    <link rel="stylesheet" href="{% static 'nav.css' %}">
+</head>
+<style>
+    #quiz-container {max-width: 700px; margin: auto; padding: 20px; background: #fff; border-radius: 10px;}
+    .timer{color: #e74c3c; font-weight: bold; position: sticky; top: 0; background: white; padding: 10px;}
+    .question{margin-bottom: 20px; padding: 15px; border-bottom: 1px solid #eee;}
+    .option{display: block; margin: 8px 0; padding: 10px; border: 1px solid #ddd; border-radius: 5px; cursor: pointer;}
+    .option:hover{background: #f9f9f9;}
+</style>
+<body>
+    {% include 'navbar.html' %}
+    <div id="quiz-container">
+        <h2>{{ quiz.title }}</h2>
+        <div class="timer" id="timer">Time Remaining: <span id="time">10:00</span></div>
+
+        <form method="POST" id="quizForm">
+            {% csrf_token %}
+            {% for q in questions %}
+            <div class="question">
+                <p><strong>{{ forloop.counter }}.{{ q.text }}</strong></p>
+                <label class="option"><input type="radio" name="question_{{ q.id }}" value="{{ q.op1 }}" required>{{ q.op1 }}</label>
+                <label class="option"><input type="radio" name="question_{{ q.id }}" value="{{ q.op2 }}" >{{ q.op2 }}</label>
+                <label class="option"><input type="radio" name="question_{{ q.id }}" value="{{ q.op3 }}" >{{ q.op3 }}</label>
+                <label class="option"><input type="radio" name="question_{{ q.id }}" value="{{ q.op4 }}" >{{ q.op4 }}</label>
+            </div>
+            {% endfor %}
+            <button type="submit" class="btn" style="width: 100%; height: 50px; background: #3498db; font-size: 20px;">Finish and Submit</button>
+        </form>
+    </div>
+</body>
+{% include 'footer.html' %}
+<script>
+    let timeInSeconds = 600;
+    const display = document.querySelector('#timer');
+
+    const timer = setInterval(() => {
+        let minutes = Math.floor(timeInSeconds / 60);
+        let seconds = timeInSeconds % 60;
+        display.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (timeInSeconds <= 0){
+            clearInterval(timer);
+            alert("time is up! Submitting automatically.");
+            document.getElementById('quizForm').submit();
+        }
+        timeInSeconds--;
+    }, 1000);
+</script>
+</html>

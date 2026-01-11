@@ -1,0 +1,58 @@
+/* Navbar Starting */
+/* basic reset and body styling */
+body{
+    margin: 0;
+    padding-top: 60%;
+    font-family: Arial, sans-serif;
+}
+
+/* styles for the header to position the navbar at the top */
+header{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* styles for the navigation bar */
+.navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+} 
+
+/* styles for the navigation link container */
+.nav-link-container{
+    display: flex;
+    align-items: center;
+}
+
+/* styles for each link */
+.nav-link{
+    margin-left: 230px;
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:first-child{
+    margin-right: 0;
+}
+
+.nav-link:hover{
+    background-color: #575757;
+}
+
+.nav-link.active{
+    background-color: #04aa6d;
+}
+
+body{
+    padding-top: 60px;
+}
+/* Navbar ending */

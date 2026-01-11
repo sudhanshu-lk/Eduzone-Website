@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz/Test</title>
+    <link rel="stylesheet" href="{% static 'nav.css' %}">
+</head>
+<style>
+    .quizh1{text-align: center;}
+    .search-container {text-align: center; margin-bottom: 30px; margin-top: 20px;}
+    .search_input{padding: 10px; width; 300px; border: 1px solid #ddd; border-redius: 5px;}
+    .quiz-card{background: white; padding; 20px; margin: 10px; border-raius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); display: inline-block; width; 250px;}
+    .btn{background: #3498db; color: white; padding: 8px 15px; text-decoration: none; border-radius; 4px;}
+</style>
+<body>
+    {% include 'navbar.html' %}
+    <div>
+        <h1 class="quizh1">Quiz/Test</h1>
+    </div>
+    <div class="search-container">
+        <form method="GET" action="">
+            <input type="text" name="q" class="search_input" placeholder="Search by Course Name...">
+            <button type="submit" class="btn">Search</button>
+        </form>
+    </div>
+
+    <div class="quiz-grid">
+        {% for quiz in quizzes %}
+        <div class="quiz-card">
+            <h3>{{ quiz.course.name}}</h3>
+            <p>{{ quiz.title}}</p>
+            <a href="{% url 'take_quiz' quiz.id %}" class="btn">Start Test</a>
+        </div>
+        {% empty %}
+        <p>No Test found.</p>
+        {% endfor %}
+    </div>
+</body>
+{% include 'footer.html' %}
+<script src="/static/script.js"></script>
+</html>

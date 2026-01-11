@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_name }}</title>
+    <link rel="stylesheet" href="{% static 'nav.css' %}">
+    <link rel="stylesheet" href="{% static 'about.css' %}">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <section class="sectionAbout">
+        <h2>Meet Our Professional Team</h2>
+        <div class="team_grid">
+            {% for member in members %}
+            <div class="member-card">
+                <h4>{{ member.name }}</h4>
+                <p><strong>{{ member.role }}</strong></p>
+                <p>{{ member.bio }}</p>
+            </div>
+            {% empty %}
+            <p>No team members added yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+<script src="{% static 'script.js' %}"></script>
+</html>
+{% include 'footer.html' %}

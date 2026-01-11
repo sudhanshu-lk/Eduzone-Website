@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course.title }} - Documentation</title>
+    <link rel="stylesheet" href="{% static 'nav.css' %}">
+    <link rel="stylesheet" href="{% static 'course_detail.css' %}"> 
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="docs-wrapper">
+        <nav class="docs-sidebar">
+            <h3>Table of Contents</h3>
+            <ul id="toc"></ul>
+        </nav>
+
+        <main class="docs-content" id="scroll-container">
+            <article>
+                <h1>{{ course.title }}</h1>
+                <hr>
+
+                <div class="content-body" id="content">
+                    {{ course.content|safe}}
+                </div>
+            </article>
+        </main>
+    </div>
+    {% include 'footer.html' %}
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const content = document.getElementById("content");
+    const toc = document.getElementById("toc");
+    const scrollContainer = document.getElementById("scroll-container");
+
+    if (!content || !toc || !scrollContainer) {
+        console.error("Content or toc element missing");
+        return;
+    }
+
+    const headings = Array.from(
+        content.querySelectorAll("h2", "h3")
+    ).filter(h => h.textContent.trim().length > 0);
+
+    console.log("HEDINGS FOUND: ", headings.length);
+
+    if (headings.length === 0) return;
+
+    //build toc
+    toc.innerHTML = "";
+
+    headings.forEach((heading, index) => {
+        if (!heading.id) {
+            heading.id = "heading-" + index;
+        }
+
+        const li = document.createElement("li");
+        li.className = heading.tagName.toLowerCase();
+
+        const a = document.createElement("a");
+        a.href = "#" + heading.id;
+        a.textContent = heading.textContent.trim();
+
+        a.addEventListener("click", function (e) {
+            e.preventDefault();
+            heading.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+
+        li.appendChild(a)
+        toc.appendChild(li)
+    });
+
+
+    function highlightActive() {
+        let currentId = "";
+
+        headings.forEach(h => {
+            const rect = h.getBoundingClientRect();
+            const containerRect = scrollContainer.getBoundingClientRect();
+
+            if (rect.top - containerRect <= 120) {
+                currentId = h.id;
+            }
+        });
+
+        toc.querySelectorAll("a").forEach(link => {
+            link.classList.toggle(
+                "active",
+                link.getAttribute("href") === "#" + currentId
+            );
+        });
+    }
+
+    scrollContainer.addEventListener("scroll", highlightActive);
+    highlightActive();
+});
+</script>
+</html>
