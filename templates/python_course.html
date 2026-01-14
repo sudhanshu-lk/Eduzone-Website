@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/nav.css">
+    <link rel="stylesheet" href="/static/python_course.css">
+    <title>Python Programming Course</title>
+</head>
+<body>
+    {% include "header.html" %}
+    <div class = "course-header">
+        <h1>Welcome to the Python programming!</h1>
+        <p>The most popular language for Data Science and Web Development</p>
+    </div>
+
+    <div class = "content">
+        <h2>Course Details:</h2>
+        <p>Python is a procedural programming language.It was initially developed by Dennis Ritchie in 1972 at Bell Labs.</p>
+        <h3>Topics Covered:</h3>
+        <ul>
+            <li>Variables and Data Types</li>
+            <li>Pointers and Memory</li>
+            <li>Arrays and Strings</li>
+            <li>File Handling</li>
+        </ul>
+    </div>
+<a href="{% url 'course' %}">Back to All Courses</a>    
+</body>
+</html>
