@@ -20,7 +20,7 @@ def course_view(request):
     courses = PageCourse.objects.all()
     return render(request, 'course.html', {'courses': courses})
 
-@login_required
+# @login_required
 def quiz_list(request):
     query = request.GET.get('q')
     if query:
@@ -30,7 +30,7 @@ def quiz_list(request):
         quizzes = Quiz.objects.all()
     return render(request, 'quiz_list.html', {'quizzes': quizzes})
 
-@login_required
+# @login_required
 def take_quiz(request, quiz_id):
     quiz_obj = get_object_or_404(Quiz, id=quiz_id)
     questions = quiz_obj.questions.all()
