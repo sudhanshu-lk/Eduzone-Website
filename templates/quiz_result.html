@@ -6,35 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Result</title>
     <link rel="stylesheet" href="{% static 'nav.css' %}">
+    <link rel="stylesheet" href="{% static 'quiz_result.css' %}">
 </head>
-<style>
-    .result-container{
-        max-width: 600px;
-        margin: 50px auto;
-        padding: 30px;
-        background: #fff;
-        border-radius: 10px;
-        text-align: center;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .score-circle{
-        font-size: 48px;
-        font-weight: bold;
-        color: #3498db;
-        margin: 20px 0;
-    }
-
-    .btn-back{
-        display: inline-block;
-        margin-top: 20px;
-        padding: 10px 20px;
-        background: #3498db;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-    }
-</style>
 <body>
     {% include 'navbar.html' %}
     <div class="result-container">

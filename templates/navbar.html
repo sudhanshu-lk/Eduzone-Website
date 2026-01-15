@@ -1,12 +1,27 @@
-   <div id="navbar-placeholder">
-    <header>
-    <nav class="nav-navbar">
-        <div class="nav-link-container">
-            <a href="{% url 'home' %}" class="nav-link active">Home</a>    
-            <a href="{% url 'about' %}" class="nav-link">About Us</a>    
-            <a href="{% url 'course' %}" class="nav-link">Courses</a>    
-            <a href="{% url 'quiz_list' %}" class="nav-link">Quiz/Test</a> 
-        </div>
+<div id="navbar-placeholder">
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="{% url 'home' %}" class="nav-link active">Logo</a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        &#9776; <!-- Hamburger icon -->
+      </div>
+      <div class="nav-link-container" id="nav-links">
+        <a href="{% url 'home' %}" class="nav-link active">Home</a>
+        <a href="{% url 'about' %}" class="nav-link">About Us</a>
+        <a href="{% url 'course' %}" class="nav-link">Courses</a>
+        <a href="{% url 'quiz_list' %}" class="nav-link">Quiz/Test</a>
+      </div>
     </nav>
-</header>
+  </header>
 </div>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+  });
+</script>

@@ -1,26 +1,78 @@
-.sectionAbout{
+/* ===== Section Layout ===== */
+.sectionAbout {
     display: grid;
     place-items: center;
-    margin-top: 50px;
+    margin-top: 150px; /* Default top spacing from navbar */
     gap: 20px;
+    padding: 0 20px 80px; /* Bottom padding for footer spacing */
+    position: relative;
+    z-index: 1;
 }
 
-.sectionAbout h2{
+/* ===== Title ===== */
+.sectionAbout h2 {
     font-size: 30px;
     text-align: center;
+    color: #000; /* Make sure text is visible */
 }
 
-.team_grid{
+/* ===== Team Grid ===== */
+.team_grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 cards in one row */
+    grid-template-columns: repeat(3, 1fr);
     gap: 5rem;
+    width: 100%;
+    max-width: 1200px;
+    place-items: center;
 }
 
-.member-card{
+/* ===== Member Card ===== */
+.member-card {
     background: #e24242;
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 80%;
+}
+
+.member-card h4 {
+    margin-bottom: 8px;
+}
+
+.member-card p {
+    margin: 5px 0;
+}
+
+/* ===== Tablet (≤ 992px) ===== */
+@media (max-width: 992px) {
+    .team_grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+
+    .member-card {
+        width: 90%;
+    }
+}
+
+/* ===== Mobile (≤ 576px) ===== */
+@media (max-width: 576px) {
+    .team_grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .member-card {
+        width: 100%;
+    }
+
+    .sectionAbout {
+        margin-top: 180px; /* More space from navbar for small screens */
+        padding-bottom: 80px; /* Keep footer spacing */
+    }
+
+    .sectionAbout h2 {
+        font-size: 24px; /* Smaller text for mobile */
+    }
 }
