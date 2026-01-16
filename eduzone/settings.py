@@ -20,12 +20,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-l)5btkhbl*+tuhex*c58kb9wc^&*u4)o!hj$hn2n0boh5rmn0='
+# SECRET_KEY = 'django-insecure-l)5btkhbl*+tuhex*c58kb9wc^&*u4)o!hj$hn2n0boh5rmn0='
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    "django-insecure-local-dev-only"
+)
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = os.environ.get("DEBUG", "True") == "True"
 
-ALLOWED_HOSTS = ['.vercel.app', 'now.sh', 'localhost', '127.0.0.1', '*']
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    ".vercel.app",
+]
 
 # Application definition
 
@@ -70,7 +80,7 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'eduzone.wsgi.application'
+WSGI_APPLICATION = 'eduzone.wsgi.application'
 
 
 # Database
@@ -118,17 +128,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'static'),
-]
-
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 CKEDITOR_UPLOAD_PATH = "uploads/"
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

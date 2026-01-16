@@ -1,15 +1,15 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "eduzone/wsgi.py",
-            "use": "@vercel/python"
-        }
-    ],
-    "routes":[
-        {
-            "src": "/(.*)",
-            "dest": "eduzone/wsgi.py"
-        }
-    ]
+  "version": 3,
+  "builds": [
+    {
+      "src": "manage.py",
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "50mb"
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "eduzone/wsgi.py" }
+  ]
 }
