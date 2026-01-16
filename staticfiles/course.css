@@ -1,0 +1,107 @@
+/* ======================
+   CONTAINER
+====================== */
+.container2 {
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+/* ======================
+   HEADINGS
+====================== */
+.container2 h1 {
+    font-size: 2.5rem;
+    margin: 1.5rem 0 2rem 0;
+    color: #000;
+}
+
+/* POPULAR COURSES SECTION */
+.popular-courses {
+    padding: 4rem 1rem;
+}
+
+/* ======================
+   COURSE GRID
+====================== */
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row on desktop */
+    gap: 2rem;
+    justify-items: center;
+}
+
+/* COURSE CARD */
+.course-card {
+    background: #e24242;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 320px; /* keeps all cards same width */
+    box-sizing: border-box;
+}
+
+.course-card img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.course-card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.course-card p {
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+/* BUTTON INSIDE CARD */
+.course-card .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.course-card .btn:hover {
+    background-color: #0056b3;
+}
+
+/* ======================
+   RESPONSIVE MEDIA
+====================== */
+
+/* Tablet */
+@media (max-width: 992px) {
+    .course-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .course-grid {
+        grid-template-columns: 1fr; /* 1 card per row */
+    }
+
+    .container2 h1 {
+        font-size: 1.8rem;
+        margin-top: 120px; /* space below navbar on mobile */
+    }
+
+    .course-card {
+        max-width: 100%;
+    }
+}

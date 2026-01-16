@@ -1,0 +1,137 @@
+/* ===== GLOBAL ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+html, body {
+    height: 100%;
+    background-color: #f4f4f4;
+}
+
+/* ===== BODY PADDING TO AVOID NAVBAR OVERLAP ===== */
+body {
+    padding-top: 100px; /* desktop navbar height */
+}
+
+@media (max-width: 992px) {
+    body {
+        padding-top: 120px; /* tablet navbar height */
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 160px; /* mobile navbar taller */
+    }
+}
+
+@media (max-width: 400px) {
+    body {
+        padding-top: 180px; /* small mobile extra space */
+    }
+}
+
+/* ===== RESULT CONTAINER ===== */
+.result-container {
+    max-width: 600px;
+    width: 90%;
+    margin: 50px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== RESULT TITLE ===== */
+.result-container h1 {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* ===== QUIZ INFO ===== */
+.result-container p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* ===== SCORE CIRCLE ===== */
+.score-circle {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: bold;
+    color: #3498db;
+    margin: 20px 0;
+}
+
+/* ===== PERCENTAGE ===== */
+.result-container h3 {
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    color: #e74c3c;
+    margin-bottom: 20px;
+}
+
+/* ===== BACK BUTTON ===== */
+.btn-back {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #2980b9;
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablets */
+@media (max-width: 992px) {
+    .result-container {
+        padding: 25px;
+        margin: 40px auto;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .result-container {
+        padding: 20px;
+        margin: 30px 15px;
+    }
+
+    .score-circle {
+        font-size: 2.5rem;
+    }
+
+    .btn-back {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 400px) {
+    .result-container {
+        padding: 15px;
+        margin: 25px 10px;
+    }
+
+    .score-circle {
+        font-size: 2rem;
+    }
+
+    .btn-back {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}
