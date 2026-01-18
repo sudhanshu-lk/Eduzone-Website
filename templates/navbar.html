@@ -8,10 +8,14 @@
         &#9776; <!-- Hamburger icon -->
       </div>
       <div class="nav-link-container" id="nav-links">
-        <a href="{% url 'home' %}" class="nav-link active">Home</a>
+        {% comment %} <a href="{% url 'home' %}" class="nav-link">Home</a>
         <a href="{% url 'about' %}" class="nav-link">About Us</a>
         <a href="{% url 'course' %}" class="nav-link">Courses</a>
-        <a href="{% url 'quiz_list' %}" class="nav-link">Quiz/Test</a>
+        <a href="{% url 'quiz_list' %}" class="nav-link">Quiz/Test</a> {% endcomment %}
+        <a href="{% url 'home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">Home</a>
+        <a href="{% url 'about' %}" class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}">About Us</a>
+        <a href="{% url 'course' %}" class="nav-link {% if request.resolver_match.url_name == 'course' %}active{% endif %}">Courses</a>
+        <a href="{% url 'quiz_list' %}" class="nav-link {% if request.resolver_match.url_name == 'quiz_list' %}active{% endif %}">Quiz/Test</a>
       </div>
     </nav>
   </header>
@@ -20,8 +24,20 @@
 <script>
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('nav-links');
+  const navLinkItems = document.querySelectorAll('.nav-link');
 
   hamburger.addEventListener('click', () => {
     navLinks.classList.toggle('show');
   });
+
+  navLinkItems.forEach(link => {
+    link.addEventListener('click', () => {
+      // sab se active class hatao
+      navLinkItems.forEach(item => item.classList.remove('active'));
+
+      // jis par click hua usko active banao
+      link.classList.add('active');
+    });
+  });
+
 </script>
